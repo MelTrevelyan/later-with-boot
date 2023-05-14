@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/items")
@@ -14,15 +13,13 @@ public class ItemController {
 
     @GetMapping
     public List<ItemDto> get(@RequestHeader("X-Later-User-Id") long userId) {
-        return itemService.getItems(userId).stream()
-                .map(ItemMapper::toItemDto)
-                .collect(Collectors.toList());
+        return itemService.getItems(userId);
     }
 
     @PostMapping
     public ItemDto add(@RequestHeader("X-Later-User-Id") Long userId,
-                    @RequestBody Item item) {
-        return ItemMapper.toItemDto(itemService.addNewItem(userId, item));
+                    @RequestBody ItemDto itemDto) {
+        return itemService.addNewItem(userId, itemDto);
     }
 
     @DeleteMapping("/{itemId}")

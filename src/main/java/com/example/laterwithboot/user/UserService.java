@@ -3,7 +3,7 @@ package com.example.laterwithboot.user;
 import java.util.List;
 
 public interface UserService {
-    List<User> getAllUsers();
-    User saveUser(User user);
-    User findUserById(long id);
+    List<UserDto> getAllUsers();
+    UserDto saveUser(UserDto userDto);
+    UserDto findUserById(long id);
 }

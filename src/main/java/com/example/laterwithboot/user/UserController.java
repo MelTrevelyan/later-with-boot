@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,13 +14,11 @@ public class UserController {
 
     @GetMapping
     public List<UserDto> getAllUsers() {
-        return userService.getAllUsers().stream()
-                .map(UserMapper::toUserDto)
-                .collect(Collectors.toList());
+        return userService.getAllUsers();
     }
 
     @PostMapping
-    public UserDto saveNewUser(@RequestBody User user) {
-        return UserMapper.toUserDto(userService.saveUser(user));
+    public UserDto saveNewUser(@RequestBody UserDto userDto) {
+        return userService.saveUser(userDto);
     }
 }

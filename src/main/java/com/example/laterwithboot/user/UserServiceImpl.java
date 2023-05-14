@@ -8,23 +8,25 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository repository;
 
     @Override
-    public List<User> getAllUsers() {
-        return repository.findAll();
+    public List<UserDto> getAllUsers() {
+        return UserMapper.toUserDtos(repository.findAll());
+    }
+
+    @Transactional
+    @Override
+    public UserDto saveUser(UserDto userDto) {
+        User user = UserMapper.toUser(userDto);
+        return UserMapper.toUserDto(repository.save(user));
     }
 
     @Override
-    public User saveUser(User user) {
-        return repository.save(user);
-    }
-
-    @Override
-    public User findUserById(long id) {
-        return repository.findById(id).orElseThrow(UserNotFoundException::new);
+    public UserDto findUserById(long id) {
+        return UserMapper.toUserDto(repository.findById(id).orElseThrow(UserNotFoundException::new));
     }
 }

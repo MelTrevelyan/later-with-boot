@@ -11,6 +11,13 @@ import java.time.Instant;
 @Table(name = "users", schema = "public")
 public class User {
 
+    public User(Long id, String email, String firstName, String lastName, UserState state) {
+        this.id = id;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.state = state;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -12,15 +12,16 @@ public class UserMapper {
 
     public static UserDto toUserDto(User user) {
         ZoneId timeZone = ZoneId.systemDefault();
+        UserDto userDto = new UserDto();
 
-        return UserDto.builder()
-                .id(user.getId())
-                .email(user.getEmail())
-                .firstName(user.getFirstName())
-                .lastName(user.getLastName())
-                .registrationDate(LocalDateTime.ofInstant(user.getRegistrationDate(), timeZone).format(TIME_FORMATTER))
-                .state(user.getState())
-                .build();
+        userDto.setId(user.getId());
+        userDto.setEmail(user.getEmail());
+        userDto.setFirstName(user.getFirstName());
+        userDto.setLastName(user.getLastName());
+        userDto.setRegistrationDate(LocalDateTime.ofInstant(user.getRegistrationDate(), timeZone).format(TIME_FORMATTER));
+        userDto.setState(user.getState());
+
+        return userDto;
     }
 
     public static List<UserDto> toUserDtos(Collection<User> users) {

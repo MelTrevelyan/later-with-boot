@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -21,7 +22,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public UserDto saveUser(UserDto userDto) {
+        Instant now = Instant.now();
         User user = UserMapper.toUser(userDto);
+        user.setRegistrationDate(now);
         return UserMapper.toUserDto(repository.save(user));
     }
 

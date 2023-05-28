@@ -25,13 +25,13 @@ public class ItemNoteServiceImpl implements ItemNoteService {
     @Override
     public ItemNoteDto addNewItemNote(long userId, ItemNoteDto itemNoteDto) {
         User user = UserMapper.toUser(userService.findUserById(userId));
-        Item item = ItemMapper.toItem(itemService.findById(itemNoteDto.getItemId()), user);
+        Item item = ItemMapper.toItem(itemService.findById(itemNoteDto.getItemId()));
         return ItemNoteMapper.toItemNoteDto(repository.save(ItemNoteMapper.toItemNote(itemNoteDto, item)));
     }
 
     @Override
     public List<ItemNoteDto> searchNotesByUrl(String url, Long userId) {
-        return ItemNoteMapper.toItemNoteDtos(repository.findByItemUrlContainingAndItemUserId(url, userId));
+        return ItemNoteMapper.toItemNoteDtos(repository.findByItemResolvedUrlContainingAndItemUserId(url, userId));
     }
 
     @Override

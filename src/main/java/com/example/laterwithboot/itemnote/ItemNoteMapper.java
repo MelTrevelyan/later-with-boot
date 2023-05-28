@@ -22,7 +22,7 @@ public class ItemNoteMapper {
                 itemNote.getItem().getId(),
                 itemNote.getNoteText(),
                 dateOfNote,
-                itemNote.getItem().getUrl()
+                itemNote.getItem().getResolvedUrl()
         );
     }
 

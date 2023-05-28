@@ -1,6 +1,6 @@
 package com.example.laterwithboot.item;
 
-import com.example.laterwithboot.user.User;
+import com.example.laterwithboot.item.metadata.UrlMetadata;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,7 +11,7 @@ public class ItemMapper {
         return ItemDto.builder()
                 .id(item.getId())
                 .userId(item.getUser().getId())
-                .url(item.getUrl())
+                .url(item.getResolvedUrl())
                 .tags(item.getTags())
                 .build();
     }
@@ -24,7 +24,25 @@ public class ItemMapper {
         return dtos;
     }
 
-    public static Item toItem(ItemDto itemDto, User user) {
-        return new Item(itemDto.getId(), user, itemDto.getUrl(), itemDto.getTags());
+    public static Item toItem(ItemDto itemDto) {
+        Item item = new Item();
+        item.setResolvedUrl(itemDto.getUrl());
+        item.setTags(itemDto.getTags());
+        return item;
+    }
+
+    public static Item toItemWithMetadata(ItemDto itemDto, UrlMetadata data) {
+        Item item = new Item();
+
+        item.setTags(itemDto.getTags());
+        item.setNormalUrl(data.getNormalUrl());
+        item.setResolvedUrl(data.getResolvedUrl());
+        item.setTitle(data.getTitle());
+        item.setMimeType(data.getMimeType());
+        item.setHasImage(data.isHasImage());
+        item.setHasVideo(data.isHasVideo());
+        item.setDateResolved(data.getDateResolved());
+
+        return item;
     }
 }

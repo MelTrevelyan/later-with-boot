@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface ItemNoteRepository extends JpaRepository<ItemNote, Long> {
 
-    List<ItemNote> findByItemUrlContainingAndItemUserId(String url, long userId);
+    List<ItemNote> findByItemResolvedUrlContainingAndItemUserId(String url, long userId);
 
     @Query("select itn from ItemNote as itn " +
             "join itn.item as i" +

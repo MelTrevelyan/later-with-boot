@@ -9,7 +9,7 @@ import java.util.Set;
 @Builder
 public class ItemDto {
     private Long id;
-    private Long userId;
+    private Long userId ;
     private String url;
     private Set<String> tags;
 }

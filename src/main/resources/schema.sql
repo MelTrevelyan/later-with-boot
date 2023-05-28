@@ -9,8 +9,14 @@ email varchar(320),
 CREATE TABLE IF NOT EXISTS items
 (id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
  user_id BIGINT,
- url VARCHAR(1000),
-  CONSTRAINT fk_items_to_users FOREIGN KEY(user_id) REFERENCES users(id), UNIQUE(id, url));
+ normal_url VARCHAR(100),
+ resolved_url VARCHAR(100),
+ title VARCHAR(100),
+ mime_type VARCHAR(100),
+ has_image BOOLEAN,
+ has_video BOOLEAN,
+ date_resolved TIMESTAMP,
+ CONSTRAINT fk_items_to_users FOREIGN KEY(user_id) REFERENCES users(id), UNIQUE(id, resolved_url));
 
 CREATE TABLE IF NOT EXISTS tags
 (id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,

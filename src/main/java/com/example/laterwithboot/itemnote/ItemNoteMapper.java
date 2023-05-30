@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static com.example.laterwithboot.user.UserMapper.TIME_FORMATTER;
+import static com.example.laterwithboot.util.Constants.TIME_FORMATTER;
 
 public class ItemNoteMapper {
 

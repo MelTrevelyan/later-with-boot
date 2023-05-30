@@ -26,6 +26,7 @@ public class ItemNoteServiceImpl implements ItemNoteService {
     public ItemNoteDto addNewItemNote(long userId, ItemNoteDto itemNoteDto) {
         User user = UserMapper.toUser(userService.findUserById(userId));
         Item item = ItemMapper.toItem(itemService.findById(itemNoteDto.getItemId()));
+        item.setUser(user);
         return ItemNoteMapper.toItemNoteDto(repository.save(ItemNoteMapper.toItemNote(itemNoteDto, item)));
     }
 

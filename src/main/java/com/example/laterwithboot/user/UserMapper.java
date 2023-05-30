@@ -2,13 +2,13 @@ package com.example.laterwithboot.user;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import static com.example.laterwithboot.util.Constants.TIME_FORMATTER;
+
 public class UserMapper {
-    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy.MM.dd, HH:mm:ss");
 
     public static UserDto toUserDto(User user) {
         ZoneId timeZone = ZoneId.systemDefault();

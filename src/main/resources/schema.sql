@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS items
  has_image BOOLEAN,
  has_video BOOLEAN,
  date_resolved TIMESTAMP,
+ unread BOOLEAN,
  CONSTRAINT fk_items_to_users FOREIGN KEY(user_id) REFERENCES users(id), UNIQUE(id, resolved_url));
 
 CREATE TABLE IF NOT EXISTS tags
